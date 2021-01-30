@@ -112,14 +112,8 @@ public class calculator {
 			}
 			else {														//in case user selected invalid option
 				System.out.println("Please enter a valid choice\n");	//Let user know what they did wrong
-				System.out.println("What would you like to do: \n");	//ask user for input
-				System.out.println("add");
-				System.out.println("subtract");
-				System.out.println("multiply");
-				System.out.println("divide");
-					
-					choice = calculation.nextLine();
-					again = "Y";										//re-enter while loop
+				
+				again = "Y";											//re-enter while loop
 			}
 			
 		}
