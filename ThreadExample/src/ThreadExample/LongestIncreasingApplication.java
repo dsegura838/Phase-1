@@ -11,7 +11,7 @@ public class LongestIncreasingApplication {
 	public static void main(String[] args) throws Exception {
 
 
-		int n = 20;
+		int n = 100;
 		SequenceGenerator sg = new SequenceGenerator(n);
 		ArrayList<Integer> sequence = sg.GenerateSequence();
 		
