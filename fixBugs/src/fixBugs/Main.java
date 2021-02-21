@@ -5,8 +5,27 @@ import java.util.Scanner;
 
 public class Main {
 
+	//instantiate search and sort classes
+	static Search find = new Search();
+	//static Sort srt = new Sort();
+	
+    private static ArrayList<Integer> arrlist = new ArrayList<Integer>(); // TODO: do we really need arrlist at all?
+    private static ArrayList<Integer> expenses = new ArrayList<Integer>();
+
+    public static void addSampleExpenses() {
+        expenses.add(1000);
+        expenses.add(2300);
+        expenses.add(45000);
+        expenses.add(32000);
+        expenses.add(110);
+        expenses.addAll(arrlist); // TODO: do we really need arrlist at all?
+
+    }
+
     public static void main(String[] args) {
         /*System.out.println("Hello World!");*/
+
+        addSampleExpenses();
         System.out.println("\n**************************************\n");
         System.out.println("\tWelcome to TheDesk \n");
         System.out.println("**************************************");
@@ -14,6 +33,7 @@ public class Main {
 
     }
     private static void optionsSelection() {
+        System.out.println("\n**************************************\n");
         String[] arr = {"1. I wish to review my expenditure",
                 "2. I wish to add my expenditure",
                 "3. I wish to delete my expenditure",
@@ -27,14 +47,6 @@ public class Main {
             System.out.println(arr[i]);
             // display the all the Strings mentioned in the String array
         }
-        ArrayList<Integer> arrlist = new ArrayList<Integer>();
-        ArrayList<Integer> expenses = new ArrayList<Integer>();
-        expenses.add(1000);
-        expenses.add(2300);
-        expenses.add(45000);
-        expenses.add(32000);
-        expenses.add(110);
-        expenses.addAll(arrlist);
         System.out.println("\nEnter your choice:\t");
         Scanner sc = new Scanner(System.in);
         int  options =  sc.nextInt();
@@ -47,6 +59,7 @@ public class Main {
                         optionsSelection();
                         break;
                     case 2:
+                        //TODO: Make the changes "sticky"
                         System.out.println("Enter the value to add your Expense: \n");
                         int value = sc.nextInt();
                         expenses.add(value);
@@ -57,6 +70,7 @@ public class Main {
 
                         break;
                     case 3:
+                        //TODO: Make the changes "sticky"
                         System.out.println("You are about the delete all your expenses! \nConfirm again by selecting the same option...\n");
                         int con_choice = sc.nextInt();
                         if(con_choice==options){
@@ -66,20 +80,29 @@ public class Main {
                         } else {
                             System.out.println("Oops... try again!");
                         }
-                    	/*System.out.println("Enter the expense that you want to delete: ");
-                    	int del = sc.nextInt();
-                    	if(expenses.contains(del)) {
-                    		expenses.remove(expenses.indexOf(del));
-                    		System.out.println(expenses);
-                    	}*/
                         optionsSelection();
                         break;
                     case 4:
-                        sortExpenses(expenses);
+//                    	int end = srt.partition(expenses);
+//                    	System.out.println(end);
+                    	QuickSort qsu = new QuickSort(expenses);
+                        System.out.println("---------Initial Unsorted Array---------");
+                        for(int i:qsu.getSortedArray()){
+                            System.out.print(i+" ");
+                        }
+                        
+                        qsu.startQuickStart(0, expenses.size()-1);
+                        
+                        
+                        System.out.println("\n\n---------Processed sorted Array---------");
+                        for(int i:qsu.getSortedArray()){
+                            System.out.print(i+" ");
+                        }
+//                        
                         optionsSelection();
                         break;
                     case 5:
-                        searchExpenses(expenses);
+                        find.searchExpenses(expenses);
                         optionsSelection();
                         break;
                     case 6:
@@ -96,27 +119,25 @@ public class Main {
     private static void closeApp() {
         System.out.println("Closing your application... \nThank you!");
             }
-    private static void searchExpenses(ArrayList<Integer> arrayList) {
-        int leng = arrayList.size();
-        //create a scanner
-        Scanner scan = new Scanner(System.in);
-        /////////////////////////////////////////
-        System.out.println("Enter the expense you need to search:\t");
-        //Complete the method***
-        int search = scan.nextInt();
-        if(arrayList.contains(search)) {
-        	System.out.println("Expense Found: "+search);
-        	System.out.println();
-        }else {
-        	System.out.println("Not Found :(");
-        	System.out.println();
-        }
-        /////////////////////////////////////////   
-        
-    }
-    private static void sortExpenses(ArrayList<Integer> arrayList) {
-        int arrlength =  arrayList.size();
-       //Complete the method. The expenses should be sorted in ascending order.
-        
-    }
+//    private static void searchExpenses(ArrayList<Integer> arrayList) {
+//        int leng = arrayList.size();
+//        System.out.println("Enter the expense you need to search:\t");
+//        Scanner sc = new Scanner(System.in);
+//        int  expense =  sc.nextInt();
+//        
+//        
+//
+//        System.out.println("You are searching for: " + expense);
+//        //TODO: Complete the method
+//        
+//        	//}
+//        	
+//        //}
+//    }
+//    private static void sortExpenses(ArrayList<Integer> arrayList) {
+//        int arrlength =  arrayList.size();
+//       //TODO: Complete the method. The expenses should be sorted in ascending order.
+//       //create temp variable
+//        
+//    }
 }
