@@ -69,25 +69,38 @@ public class PetsServlet extends HttpServlet {
                 
         		//if (id != null) {
         			
-                out.println("<table><tr><th>Name</th><th>Color</th><th>Price</th></tr>");
+                
 
                 
-                while (rst.next()) {
+                if (rst.next()) {
+                	out.println("<table><tr><th>Name</th><th>Color</th><th>Price</th></tr>");
                     out.println("<tr><td>" + rst.getString("name") + "</td>" + "<td>" +
                     		rst.getString("color") + "</td><td>" + rst.getBigDecimal("price") + "</td></tr>");
-                }
+                    out.println("</table>");
+                	
+                    out.println("<a href = 'index.html'> Return to Main</a<br>");
+            	
+
+                stmt.close();        
+
+
+                out.println("</body></html>");
+                
+                }else {
 
                 out.println("</table>");
-        	//}
-        	//else {
-        		out.print("ID not found");
-        	//}
+                
+                out.println("Invalid ID");
+        	
+                out.println("<a href = 'index.html'> Return to Main</a<br>");
         	
 
             stmt.close();        
 
 
             out.println("</body></html>");
+            }
+            
             conn.closeConnection();
 
         } catch (ClassNotFoundException e) {
