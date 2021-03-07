@@ -29,6 +29,7 @@ import com.example.PetsExample.model.*;
 /**
  * Servlet implementation class PetsServlet
  */
+
 public class PetsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,12 +44,12 @@ public class PetsServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
         // TODO Auto-generated method stub
-
-        try {
+		try {
         	PrintWriter out = response.getWriter();
             out.println("<html><body>");
             ///PetsExample/WebContent/WEB-INF/config.properties
@@ -57,20 +58,31 @@ public class PetsServlet extends HttpServlet {
             //InputStream in = new FileInputStream("config.properties");
             Properties props = new Properties();
             props.load(in);
-
+            
+            
             DBConnection conn = new DBConnection(props.getProperty("url"), props.getProperty("userid"), props.getProperty("password"));
         	Statement stmt = conn.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet rst = stmt.executeQuery("select * from products");
+        	
+        	String id = request.getParameter("id");
+        	
+        		ResultSet rst = stmt.executeQuery("select * from products where id = "+ id);
+                
+        		//if (id != null) {
+        			
+                out.println("<table><tr><th>Name</th><th>Color</th><th>Price</th></tr>");
 
-            out.println("<table><tr><th>Name</th><th>Color</th><th>Price</th></tr>");
+                
+                while (rst.next()) {
+                    out.println("<tr><td>" + rst.getString("name") + "</td>" + "<td>" +
+                    		rst.getString("color") + "</td><td>" + rst.getBigDecimal("price") + "</td></tr>");
+                }
 
-            
-            while (rst.next()) {
-                out.println("<tr><td>" + rst.getString("name") + "</td>" + "<td>" +
-                		rst.getString("color") + "</td><td>" + rst.getBigDecimal("price") + "</td></tr>");
-            }
-
-            out.println("</table>");
+                out.println("</table>");
+        	//}
+        	//else {
+        		out.print("ID not found");
+        	//}
+        	
 
             stmt.close();        
 
@@ -83,6 +95,8 @@ public class PetsServlet extends HttpServlet {
         } catch (SQLException e) {
         	e.printStackTrace();
         }
+
+       
 	}
 
 
@@ -91,7 +105,11 @@ public class PetsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		doGet(request, response);
+		
+		 
+        
 	}
 
 }
