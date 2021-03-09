@@ -4,11 +4,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
+<script>
+function validateForm() {
+  var x = document.forms["loginForm"]["name"].value;
+  var y = document.forms["loginForm"]["color"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (y == "") {
+    alert("Color must be filled out");
+    return false;
+  }
+}
+</script>
+
 <title>Add Pet</title>
 </head>
 <body>
 	<h1>Add Animal</h1>
-	 <form name = "loginForm" method="get" action="PetsServlet">
+	 <form name = "loginForm" method="get" action="PetsServlet" onsubmit="return validateForm()" method="get">
 	  name: <input type="text" name="name"/> <br/>
 	  price: <input type="number" name="price"/> <br/>
 	  color: <input type="text" name="color"/> <br/>

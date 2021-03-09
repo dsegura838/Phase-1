@@ -79,12 +79,16 @@ public class PetsServlet extends HttpServlet {
                
                //let user know pet was added
                PrintWriter out = response.getWriter();
+               
+               out.println("<html><body>");
+               
                out.println("Pet was added");
                //return user to addpet menu
-               out.println("<a href=\"addpet.jsp\"> Add a Pet</a>");
+               out.println("<a href = 'addpet.jsp'> Return to Main</a<br>");
                //close the session
                session.close();
                
+               out.println("</body></html>");
                // using HQL
 //               List<Product> list = session.createQuery("from Product", Product.class).list();
 //               
