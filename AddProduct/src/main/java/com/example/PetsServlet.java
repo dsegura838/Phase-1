@@ -84,7 +84,7 @@ public class PetsServlet extends HttpServlet {
                
                out.println("Pet was added");
                //return user to addpet menu
-               out.println("<a href = 'addpet.jsp'> Return to Main</a<br>");
+               out.println("<a href = 'addpet.jsp'>Add Pet</a<br>");
                //close the session
                session.close();
                
@@ -105,8 +105,11 @@ public class PetsServlet extends HttpServlet {
             //out.println("</body></html>");
             
             
-        } catch (Exception ex) {
-                throw ex;
+        } catch (NumberFormatException nfe) {
+        		
+                throw nfe;
+        }catch(Exception ex) {
+        	throw ex;
         }
 
 		

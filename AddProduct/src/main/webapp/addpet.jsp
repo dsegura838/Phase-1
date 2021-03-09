@@ -9,10 +9,15 @@
 function validateForm() {
   var x = document.forms["loginForm"]["name"].value;
   var y = document.forms["loginForm"]["color"].value;
+  var z = document.forms["loginForm"]["price"].value;
   if (x == "") {
     alert("Name must be filled out");
     return false;
   }
+  if (z == "") {
+	    alert("Price must be filled out");
+	    return false;
+	  }
   if (y == "") {
     alert("Color must be filled out");
     return false;
