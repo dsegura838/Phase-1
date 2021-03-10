@@ -29,7 +29,7 @@ function validateForm() {
 </head>
 <body>
 	<h1>Add Animal</h1>
-	 <form name = "loginForm" method="get" action="PetsServlet" onsubmit="return validateForm()" method="get">
+	 <form name = "loginForm" method="post" action="PetsServlet" onsubmit="return validateForm()">
 	  name: <input type="text" name="name"/> <br/>
 	  price: <input type="number" name="price"/> <br/>
 	  color: <input type="text" name="color"/> <br/>

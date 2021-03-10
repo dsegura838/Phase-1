@@ -49,68 +49,72 @@ public class PetsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// TODO Auto-generated method stub
-        try {
-               SessionFactory factory = HibernateUtil.getSessionFactory();
-               
-               Session session = factory.openSession();
-               //begin transaction
-               session.getTransaction().begin();
-               
-               //instantiate products
-               Product products = new Product();
-               
-               //get field values
-               String petName = request.getParameter("name");
-               BigDecimal price = new BigDecimal(request.getParameter("price"));
-               String color = request.getParameter("color");
-               
-          
-               
-               //insert new pet
-               products.setName(petName);
-               products.setPrice(price);
-               products.setColor(color);
-               
-               //save the session
-               session.save(products);
-               
-               //commit transction
-               session.getTransaction().commit();
-               
-               //let user know pet was added
-               PrintWriter out = response.getWriter();
-               
-               out.println("<html><body>");
-               
-               out.println("Pet was added");
-               //return user to addpet menu
-               out.println("<a href = 'addpet.jsp'>Add Pet</a<br>");
-               //close the session
-               session.close();
-               
-               out.println("</body></html>");
-               // using HQL
-//               List<Product> list = session.createQuery("from Product", Product.class).list();
-//               
-//               session.close();
-//               
-//                PrintWriter out = response.getWriter();
-//                out.println("<html><body>");
-//                out.println("<b>Product Listing</b><br>");
-//                for(Product p: list) {
-//                        out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
-//                                        ", Price: " + String.valueOf(p.getPrice()) + ", Color: " + p.getColor().toString() + "<br>");
-               // }
-                
-            //out.println("</body></html>");
+		try {
+            SessionFactory factory = HibernateUtil.getSessionFactory();
             
+            Session session = factory.openSession();
+            //begin transaction
+            session.getTransaction().begin();
+//            
+//            //instantiate products
+//            Product products = new Product();
+//            
+//            //get field values
+//            String petName = request.getParameter("name");
+//            BigDecimal price = new BigDecimal(request.getParameter("price"));
+//            String color = request.getParameter("color");
+//            
+//       
+//            
+//            //insert new pet
+//            products.setName(petName);
+//            products.setPrice(price);
+//            products.setColor(color);
+//            
+//            //save the session
+//            session.save(products);
+//            
+//            //commit transction
+//            session.getTransaction().commit();
+//            
+//            //let user know pet was added
+//            PrintWriter out = response.getWriter();
+//            
+//            out.println("<html><body>");
+//            
+//            out.println("Pet was added");
+//            //return user to addpet menu
+//            out.println("<a href = 'addpet.jsp'>Add Pet</a<br>");
+//            //close the session
+//            session.close();
+//            
+//            out.println("</body></html>");
+/////////////////////////////////////////////////////////////////            
             
-        } catch (NumberFormatException nfe) {
-        		
-                throw nfe;
-        }catch(Exception ex) {
-        	throw ex;
-        }
+			// using HQL
+            List<Product> list = session.createQuery("from Product", Product.class).list();
+            
+            session.close();
+            
+             PrintWriter out = response.getWriter();
+             out.println("<html><body>");
+             out.println("<b>Product Listing</b><br>");
+             for(Product p: list) {
+                     out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
+                                     ", Price: " + String.valueOf(p.getPrice()) + ", Color: " + p.getColor().toString() + "<br>");
+             }
+         //take user back to main menu
+         out.println("<a href = 'index.jsp'>Back to Main</a<br>");
+         
+         out.println("</body></html>");
+         
+         
+     } catch (NumberFormatException nfe) {
+     		
+             throw nfe;
+     }catch(Exception ex) {
+     	throw ex;
+     }
 
 		
 		
@@ -121,6 +125,70 @@ public class PetsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+            SessionFactory factory = HibernateUtil.getSessionFactory();
+            
+            Session session = factory.openSession();
+            //begin transaction
+            session.getTransaction().begin();
+            
+            //instantiate products
+            Product products = new Product();
+            
+            //get field values
+            String petName = request.getParameter("name");
+            BigDecimal price = new BigDecimal(request.getParameter("price"));
+            String color = request.getParameter("color");
+            
+       
+            
+            //insert new pet
+            products.setName(petName);
+            products.setPrice(price);
+            products.setColor(color);
+            
+            //save the session
+            session.save(products);
+            
+            //commit transction
+            session.getTransaction().commit();
+            
+            //let user know pet was added
+            PrintWriter out = response.getWriter();
+            
+            out.println("<html><body>");
+            
+            out.println("Pet was added");
+            //return user to addpet menu
+            out.println("<a href = 'index.jsp'>Back to Main</a<br>");
+            //close the session
+            session.close();
+            
+            out.println("</body></html>");
+            // using HQL
+//            List<Product> list = session.createQuery("from Product", Product.class).list();
+//            
+//            session.close();
+//            
+//             PrintWriter out = response.getWriter();
+//             out.println("<html><body>");
+//             out.println("<b>Product Listing</b><br>");
+//             for(Product p: list) {
+//                     out.println("ID: " + String.valueOf(p.getID()) + ", Name: " + p.getName() +
+//                                     ", Price: " + String.valueOf(p.getPrice()) + ", Color: " + p.getColor().toString() + "<br>");
+            // }
+             
+         //out.println("</body></html>");
+         
+         
+     } catch (NumberFormatException nfe) {
+     		
+             throw nfe;
+     }catch(Exception ex) {
+     	throw ex;
+     }
+		//doGet(request, response);
+		
+		
 	}
 }
